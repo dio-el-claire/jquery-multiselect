@@ -1,30 +1,26 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
-   "http://www.w3.org/TR/html4/strict.dtd">
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
 
 <html lang="en">
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-	<title>jQuery multiselect plugin</title>
-	
+	<title>jQuery.multiselect</title>
+
 	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.4/jquery.min.js" type="text/javascript" charset="utf-8"></script>
-	<script src="js/jquery.multiselect.js" type="text/javascript" charset="utf-8"></script>
+	<script src="jquery.multiselect.js" type="text/javascript" charset="utf-8"></script>
 
-	<link rel="stylesheet" href="css/ui-themes/cupertino/jquery-ui-1.8.8.custom.css" type="text/css" media="screen" title="no title" charset="utf-8">
-	<link rel="stylesheet" href="css/style.css" type="text/css" media="screen" title="no title" charset="utf-8">
-
+	<link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/themes/cupertino/jquery-ui.css" type="text/css" media="screen" charset="utf-8">
+	<link rel="stylesheet" href="jquery.multiselect.css" type="text/css" media="screen" charset="utf-8">
 
 	<script type="text/javascript" charset="utf-8">
 		$().ready(function() {
-			
 			var optsColor = {
 					addText : 'Other color'
 				},
 				filmOpts = {
 					addText : 'Other film',
-					
 					parse   : function(v) { return v.split(/\s*,\s*/); },
-					inputTitle : 'Separate values by colon',
-					layout : '<div class="ui-widget  mselect">'
+					inputTitle : 'Separate values by comma',
+					layout : '<div class="ui-widget mselect">'
 								+'<div class="ui-widget-content ui-corner-all mselect-list">'
 									+'%items%'
 								+'</div>'
@@ -38,9 +34,9 @@
 				writerOpts = {
 					addText : 'Other author',
 					parse   : function(v) { return v.split(/\s*,\s*/); },
-					inputTitle : 'Separate values by colon',
+					inputTitle : 'Separate values by comma',
 					toggleAddButton : false,
-					layout : '<div class="ui-widget  mselect">'
+					layout : '<div class="ui-widget mselect">'
 								+'<div class="ui-widget-content ui-corner-all mselect-list">'
 									+'%items%'
 									+'<div class="mselect-input-container">'
@@ -48,52 +44,29 @@
 										+'<a href="#" class="ui-state-default mselect-button-cancel" title="%cancelText%"><span class="ui-icon ui-icon-closethick"/></a>'
 									+'</div>'
 								+'</div>'
-								+'<a href="#" class="mselect-button-add"><span class="ui-state-default mselect-button-add-icon"><span class="ui-icon ui-icon-plusthick"/></span>%addText%</a>'
-								
+								+'<a href="#" class="mselect-button-add" style="float:right"><span class="ui-state-default mselect-button-add-icon"><span class="ui-icon ui-icon-plusthick"/></span>%addText%</a>'
 							+'</div>'
 				};
-			
+
 			$('#color').multiselect(optsColor);
 			$('#film').multiselect(filmOpts);
 			$('#writer').multiselect(writerOpts);
-			
-			$('#side .ui-button').hover(function() {
+
+			$('#side .ui-button, #form .ui-button').hover(function() {
 				$(this).toggleClass('ui-state-hover');
 			});
-			
-		})
+
+		});
 	</script>
 	<style type="text/css" media="screen">
-		h1 { text-align:center;  }
-		
-		#body {
-			width:980px;
-			margin:0 auto;
-			
-		}
-		
-		#side {
-			width:200px;
-			float:left;
-			margin-right:5px;
-		}
-		
-		#side .ui-button { width:100%; margin-bottom:10px;}
-		
+		h1 { text-align:center; }
+		h2 { margin-top:0; margin-bottom:.3em; }
+		#body { width:980px; margin:0 auto; }
+		#side { width:200px; float:left; margin-right:5px; }
+		#side .ui-button { width:100%; margin-bottom:10px; }
 		#form { margin-left:210px; padding:.2em; }
-		
 		#form .ui-widget-header { padding:.2em .5em; }
 		form { margin:.3em; margin-bottom:0;}
-		.row {
-			padding:.2em;
-			font-size:.9em;
-			clear:right
-		}
-		.input {
-			float:right;
-			width:400px;
-		}
-		.clear { clear:right;}
 		#form .ui-dialog-buttonpane {
 			background:transparent;
 			border-left:0 solid;
@@ -102,25 +75,30 @@
 			text-align:right;
 			padding:.1em .5em;
 		}
-		#form .ui-button-text-only .ui-button-text {
-			padding:.1em .7em;
-		}
-		
-		#content {
+		#form .ui-button-text-only .ui-button-text { padding:.1em .7em; }
+		#form small { color:#999; font-size:x-small; }
+		.row {
 			padding:.2em;
 			font-size:.9em;
+			clear:right
 		}
-		#content .ui-state-default {
-			padding:.1em .3em;
+		.input {
+			float:right;
+			margin-left:10px;
+			width:400px;
 		}
-		#content p { padding:0 .3em; }
+		.clear { clear:right;}
+		#content { padding:.2em; font-size:.9em; }
+		#content .ui-state-default { padding:.1em .3em; }
+		#content p { margin-top:.5em; padding:0 .3em; }
 		pre {
 			border:1px solid #ccc;
 			padding:1em;
 			background:#eee;
 		}
-		table { width: 100%; margin:.3em 0; border-collapse:collapse;}
-		table td { border:1px solid #ccc; padding:.2em .3em;}
+		table { width: 100%; margin:.3em 0; border-collapse:collapse; }
+		table td, table th { border:1px solid #ccc; padding:.2em .3em; }
+		table th { text-align:left; }
 	</style>
 </head>
 <body>
@@ -132,12 +110,12 @@
 			<a href="https://github.com/dio-el-claire/jquery-multiselect" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only">
 				<span class="ui-button-text">Download from github</span>
 			</a>
-			<img src="images/screen.png"  alt="Screen" style="margin-bottom:10px" />
-			<img src="images/themeroller_ready_white_200px.png" width="202" height="60" alt="Themeroller Ready White 200px" />
+			<img src="http://std42.ru/jquery-multiselect/images/screen.png"  alt="Screen" style="margin-bottom:10px" />
+			<a href="http://jqueryui.com/themeroller/"><img src="http://docs.jquery.com/images/0/09/Themeroller_ready_white_200px.png" width="202" height="60" alt="Themeroller Ready"></a>
 		</div>
 		
 		<div id="form" class="ui-widget ui-widget-content ui-corner-all">
-			<div class="ui-widget-header ui-corner-all">Example</div>
+			<h2 class="ui-widget-header ui-corner-all" style="font-size:1em;">Example</h2>
 			<form action="post.php" method="post">
 					<div class="row">
 					<div class="input">
@@ -162,6 +140,7 @@
 						</select>
 					</div>
 					Your favorite color:
+					<br><small>default layout and settings</small>
 					<div class="clear"></div>
 				</div>
 				<div class="row">
@@ -173,6 +152,7 @@
 						</select>
 					</div>
 					Your favorite film:
+					<br><small>custom layout with add button and input field outside the group</small>
 					<div class="clear"></div>
 				</div>
 				<div class="row">
@@ -183,7 +163,8 @@
 							<option value="Murakami">Murakami</option>
 						</select>
 					</div>
-					Your favorite writer:
+					Your favorite writer:<br>
+					<small>custom layout with add button outside the group on the right not hidden while input and input field inside the group</small>
 					<div class="clear"></div>
 				</div>
 			
@@ -200,11 +181,11 @@
 		<div style="clear:both;margin-bottom:1em"></div>
 		
 		<div class="ui-widget ui-widget-content ui-corner-all" id="content">
-			<div class="ui-state-default ui-corner-all">Overview</div>
-			<p>Convert select input with attribute multiple into checkboxes group and allow to add new values</p>
-			<p>Required jquery.ui styles (jquery.ui itself not required)</p>
+			<h2 class="ui-state-default ui-corner-all">Overview</h2>
+			<p>jQuery plugin that converts <strong>&lt;select&gt;</strong> input with attribute <em>multiple</em> into group of checkboxes with ability to add new values.<br>
+Requires jQuery UI styles (jQuery UI JS is not required).</p><br>
 
-			<div class="ui-state-default ui-corner-all">How to use</div>
+			<h2 class="ui-state-default ui-corner-all">How to use</h2>
 			<p>Here’s a simple example:</p>
 			<pre>
 	&lt;select multiple="on" size="5" name="color"&gt;
@@ -218,14 +199,17 @@
 	or 
 
 	var opts = { ... }
-	$('select[name="color"]').multiselect(opts);
-			</pre>
+	$('select[name="color"]').multiselect(opts);</pre><br>
 
-			<div class="ui-state-default ui-corner-all">Options</div>
+			<h2 class="ui-state-default ui-corner-all">Options</h2>
 			<table cellspacing="0">
 				<tr>
+					<th>Key</th>
+					<th>Value</th>
+				</tr>
+				<tr>
 					<td>layout</td>
-					<td>Default widget layout template</td>
+					<td>Widget layout template</td>
 				</tr>
 				<tr>
 					<td>item</td>
@@ -245,7 +229,7 @@
 				</tr>
 				<tr>
 					<td>size</td>
-					<td>How many items show in widget without scroll. (Used if select has not "size" attribute)</td>
+					<td>How many items show in widget without scroll (used if select has no "size" attribute)</td>
 				</tr>
 				<tr>
 					<td>itemHoverClass</td>
@@ -263,7 +247,7 @@
 		</div>
 
 		<hr style="color:#ccc" noshade="on" />
-		<a href="http://std42.ru" style="color:#333">Studio 42</a>
+		Made in <a href="http://std42.ru/" style="color:#333">Studio 42</a>
 	</div>
 
 </body>

@@ -4,7 +4,8 @@ jQuery.multiselect
 Overview
 --------
 
-jQuery plugin that converts `<select>` input with attribute *multiple* into group of checkboxes with ability to add new values. Requires jQuery UI styles (jQuery UI JS is not required).
+jQuery plugin that converts `<select>` input with attribute *multiple* into group of checkboxes with ability to add new values.
+Requires jQuery UI styles (jQuery UI JS is not required).
 
 [Example](http://std42.ru/jquery-multiselect/)
 
@@ -35,7 +36,7 @@ Options
 * `addText` - Text for *New value* button/link
 * `cancelText` - Text for *Cancel* icon in text field
 * `inputTitle` - Text for input tooltip
-* `size` - How many items show in widget without scroll (used if select has no *size* attribute).
+* `size` - How many items show in widget without scroll (used if select has no *size* attribute)
 * `itemHoverClass` - Hover class for list items
 * `toggleAddButton` - Hide *New value* button when text field is visible
 * `parse` - Function. Parse new list value and return values array. By default - split value by space(s)
