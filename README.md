@@ -4,7 +4,7 @@ jQuery.multiselect
 Overview
 --------
 
-jQuery plugin that converts `select` input with attribute *multiple* into group of checkboxes with ability to add new values. Requires jQuery UI styles (jQuery UI JS is not required).
+jQuery plugin that converts `<select>` input with attribute *multiple* into group of checkboxes with ability to add new values. Requires jQuery UI styles (jQuery UI JS is not required).
 
 [Example](http://std42.ru/jquery-multiselect/)
 
