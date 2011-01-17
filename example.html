@@ -21,6 +21,7 @@
 				},
 				filmOpts = {
 					addText : 'Other film',
+					
 					parse   : function(v) { return v.split(/\s*,\s*/); },
 					inputTitle : 'Separate values by colon',
 					layout : '<div class="ui-widget  mselect">'
@@ -68,14 +69,16 @@
 		#body {
 			width:980px;
 			margin:0 auto;
+			
 		}
 		
 		#side {
 			width:200px;
 			float:left;
+			margin-right:5px;
 		}
 		
-		#side .ui-button { margin-bottom:10px;}
+		#side .ui-button { width:100%; margin-bottom:10px;}
 		
 		#form { margin-left:210px; padding:.2em; }
 		
@@ -89,7 +92,6 @@
 		.input {
 			float:right;
 			width:400px;
-			
 		}
 		.clear { clear:right;}
 		#form .ui-dialog-buttonpane {
@@ -137,13 +139,17 @@
 		<div id="form" class="ui-widget ui-widget-content ui-corner-all">
 			<div class="ui-widget-header ui-corner-all">Example</div>
 			<form action="post.php" method="post">
-				<div class="row">
-					<div class="input"><input type="text" name="name" class="ui-widget-content ui-corner-all" style="width:100%"/></div>
+					<div class="row">
+					<div class="input">
+						<div><input type="text" name="name" class="ui-widget-content ui-corner-all" style="width:99%;margin:0" /></div>
+					</div>
 					Your Name:
-					<div class="clear"></div>
+					<!-- <div class="clear"></div> -->
 				</div>
 				<div class="row">
-					<div class="input"><input type="text" name="email" class="ui-widget-content ui-corner-all" style="width:100%"/></div>
+					<div class="input">
+						<div><input type="text" name="email" class="ui-widget-content ui-corner-all" style="width:99%"/></div>
+					</div>
 					Your Email:
 					<div class="clear"></div>
 				</div>

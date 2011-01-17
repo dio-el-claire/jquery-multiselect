@@ -1,5 +1,4 @@
 .mselect {
-/*	width:400px;*/
 	position:relative;
 }
 
@@ -16,7 +15,14 @@
 	font-weight:normal;
 }
 
-.mselect-list-item { display:block; zoom:1; }
+.mselect-list-item { 
+	display:block; 
+}
+
+.mselect-list-item label { 
+	width:100%; 
+	display:block;
+}
 
 .mselect-input-container { 
 	position:relative; 

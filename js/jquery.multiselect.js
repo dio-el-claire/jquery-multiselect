@@ -70,13 +70,13 @@
 					.blur(function() {
 						reset();
 					})
-					.keydown(function(e) {
+					.bind($.browser.opera ? 'keypress' : 'keydown', function(e) {
 						var c = e.keyCode;
 						
 						if (c == 13 || c == 27) {
 							e.preventDefault();
 							c == 13 ? input.change() : reset();
-						} 
+						}
 					}),
 				buttonCancel = container.find('.mselect-button-cancel')
 					.mousedown(function(e) {
@@ -152,7 +152,7 @@
 		 *
 		 * @type  String
 		 */
-		item : '<label class="mselect-list-item"><input type="checkbox" value="%value%" %checked%/>%label%</label>',
+		item : '<div  class="mselect-list-item"><label><input type="checkbox" value="%value%" %checked%/>%label%</label></div>',
 		/**
 		 * Text for "New value" button/link
 		 *
