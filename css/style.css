@@ -1,0 +1,58 @@
+.mselect {
+/*	width:400px;*/
+	position:relative;
+}
+
+.mselect-fixed {
+	overflow-x:hidden;
+	overflow-y:auto;
+}
+
+.mselect-list .mselect-list-item.ui-state-hover {
+	margin-top:-1px;
+	margin-bottom:-1px;
+	border-left:0 solid;
+	border-right:0 solid;
+	font-weight:normal;
+}
+
+.mselect-list-item { display:block; zoom:1; }
+
+.mselect-input-container { 
+	position:relative; 
+	padding:.2em; 
+	display:none;
+}
+
+.mselect-input { width: 99%; margin:0; }
+
+.mselect-button-add { 
+	display:block; 
+	zoom:1;
+	position:relative;
+	text-decoration:none; 
+	padding-left:24px;
+	padding:2px 2px 2px 24px;
+	cursor:pointer;
+}
+
+.mselect .mselect-button-add-icon,
+.mselect .mselect-button-cancel {
+	width: 17px;
+	height:17px;
+	position:absolute;
+	top:50%;
+	-moz-border-radius:8px;
+	-webkit-border-radius:8px;
+	border-radius:8px;
+}
+
+.mselect-button-add-icon { left:.2em; margin-top:-10px; }
+
+.mselect .mselect-button-cancel { 
+	right:.5em; 
+	margin-top:-8px;
+	cursor:pointer; 
+	border:0 solid;
+	background:transparent;
+}

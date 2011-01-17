@@ -1,0 +1,252 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+   "http://www.w3.org/TR/html4/strict.dtd">
+
+<html lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<title>jQuery multiselect plugin</title>
+	
+	<script src="js/jquery-1.4.4.min.js" type="text/javascript" charset="utf-8"></script>
+	<script src="js/jquery.multiselect.js" type="text/javascript" charset="utf-8"></script>
+
+	<link rel="stylesheet" href="css/ui-themes/cupertino/jquery-ui-1.8.8.custom.css" type="text/css" media="screen" title="no title" charset="utf-8">
+	<link rel="stylesheet" href="css/style.css" type="text/css" media="screen" title="no title" charset="utf-8">
+
+
+	<script type="text/javascript" charset="utf-8">
+		$().ready(function() {
+			
+			var optsColor = {
+					addText : 'Other color'
+				},
+				filmOpts = {
+					addText : 'Other film',
+					parse   : function(v) { return v.split(/\s*,\s*/); },
+					inputTitle : 'Separate values by colon',
+					layout : '<div class="ui-widget  mselect">'
+								+'<div class="ui-widget-content ui-corner-all mselect-list">'
+									+'%items%'
+								+'</div>'
+								+'<a href="#" class="mselect-button-add"><span class="ui-state-default mselect-button-add-icon"><span class="ui-icon ui-icon-plusthick"/></span>%addText%</a>'
+								+'<div class="mselect-input-container">'
+									+'<input type="text" class="ui-widget-content ui-corner-all mselect-input" title="%inputTitle%"/>'
+									+'<a href="#" class="ui-state-default mselect-button-cancel" title="%cancelText%"><span class="ui-icon ui-icon-closethick"/></a>'
+								+'</div>'
+							+'</div>'
+				},
+				writerOpts = {
+					addText : 'Other author',
+					parse   : function(v) { return v.split(/\s*,\s*/); },
+					inputTitle : 'Separate values by colon',
+					toggleAddButton : false,
+					layout : '<div class="ui-widget  mselect">'
+								+'<div class="ui-widget-content ui-corner-all mselect-list">'
+									+'%items%'
+									+'<div class="mselect-input-container">'
+										+'<input type="text" class="ui-widget-content ui-corner-all mselect-input" title="%inputTitle%"/>'
+										+'<a href="#" class="ui-state-default mselect-button-cancel" title="%cancelText%"><span class="ui-icon ui-icon-closethick"/></a>'
+									+'</div>'
+								+'</div>'
+								+'<a href="#" class="mselect-button-add"><span class="ui-state-default mselect-button-add-icon"><span class="ui-icon ui-icon-plusthick"/></span>%addText%</a>'
+								
+							+'</div>'
+				};
+			
+			$('#color').multiselect(optsColor);
+			$('#film').multiselect(filmOpts);
+			$('#writer').multiselect(writerOpts);
+			
+			$('#side .ui-button').hover(function() {
+				$(this).toggleClass('ui-state-hover');
+			});
+			
+		})
+	</script>
+	<style type="text/css" media="screen">
+		h1 { text-align:center;  }
+		form {
+			width : 600px;
+			padding:.1em;
+			margin:50px auto;
+		}
+		form .ui-widget-header { padding:.3em .4em;}
+		.form-content {
+			padding:.3em;
+			border:0 solid;
+		}
+		.row {
+			padding:.1em .2em;
+			font-size:.9em;
+		}
+		.input {
+			float:right;
+			width:400px;
+			
+		}
+		form .ui-dialog-buttonpane {
+			border-left:0 solid;
+			border-right:0 solid;
+			border-bottom:0 solid;
+			text-align:right;
+			padding:.5em 1em;
+		}
+		form .ui-button-text-only .ui-button-text {
+			padding:.2em .7em;
+		}
+		
+		#content {
+			padding:.2em;
+			font-size:.9em;
+		}
+		#content .ui-state-default {
+			padding:.1em .3em;
+		}
+		#content p { padding:0 .3em; }
+		pre {
+			border:1px solid #ccc;
+			padding:1em;
+			background:#eee;
+		}
+		table { width: 100%; margin:.3em 0; border-collapse:collapse;}
+		table td { border:1px solid #ccc; padding:.2em .3em;}
+		
+		#side {
+			width:200px;
+			position:absolute;
+			top:110px;
+		}
+		
+		#side .ui-button { margin-bottom:.5em;}
+	</style>
+</head>
+<body>
+	<h1>jQuery.multiselect plugin demo</h1>
+
+	<div id="side">
+		
+		<a href="#" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only">
+			<span class="ui-button-text">Download from github</span>
+		</a>
+		<img src="images/screen.png"  alt="Screen">
+		<img src="images/themeroller_ready_white_200px.png" width="202" height="60" alt="Themeroller Ready White 200px">
+	</div>
+	<form action="post.php" method="post" class="ui-widget ui-widget-content ui-corner-all ui-helper-clearfix">
+		<div class="ui-widget-header ui-corner-all ">
+			Profile
+		</div>
+		<div class="form-content">
+			<div class="row ui-helper-clearfix">
+				<div class="input"><input type="text" name="name" class="ui-widget-content ui-corner-all" style="width:100%"/></div>
+				Your Name:
+			</div>
+			<div class="row ui-helper-clearfix">
+				<div class="input"><input type="text" name="email" class="ui-widget-content ui-corner-all" style="width:100%"/></div>
+				Your Email:
+			</div>
+			<div class="row ui-helper-clearfix">
+				<div class="input">
+					<select multiple="on" size="5" name="color[]" id="color">
+						<option value="white">White</option>
+						<option value="black" selected="selected">Black</option>
+						<option value="red">Red</option>
+					</select>
+				</div>
+				Your favorite color:
+			</div>
+			<div class="row ui-helper-clearfix">
+				<div class="input">
+					<select multiple="on" size="5" name="film[]" id="film">
+						<option value="Dostoevsky">Arizona dreams</option>
+						<option value="Dead man">Dead man</option>
+						<option value="Avatar">Avatar</option>
+					</select>
+				</div>
+				Your favorite film:
+			</div>
+			<div class="row ui-helper-clearfix">
+				<div class="input">
+					<select multiple="on" size="5" name="writer[]" id="writer">
+						<option value="Dostoevsky">Dostoevsky</option>
+						<option value="Tomas Wolf">Tomas Wolf</option>
+						<option value="Murakami">Murakami</option>
+					</select>
+				</div>
+				Your favorite writer:
+			</div>
+		</div>
+		<div class="ui-dialog-buttonpane ui-widget-content ui-helper-clearfix">
+			<div class="ui-dialog-buttonset">
+				<button class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only">
+					<span class="ui-button-text">Ok</span>
+				</button>
+			</div>
+		</div>
+	</form>
+
+	<div class="ui-widget ui-widget-content ui-corner-all" id="content">
+		<div class="ui-state-default ui-corner-all">Overview</div>
+		<p>Convert select input with attribute multiple into checkboxes group and allow to add new values</p>
+		<p>Required jquery.ui styles (jquery.ui itself not required)</p>
+		
+		<div class="ui-state-default ui-corner-all">How to use</div>
+		<p>Here’s a simple example:</p>
+		<pre>
+&lt;select multiple="on" size="5" name="color"&gt;
+	&lt;option value="white"&gt;White&lt;/option&gt;
+	&lt;option value="black" selected="selected"&gt;Black&lt;/option&gt;
+	&lt;option value="red"&gt;Red&lt;/option&gt;
+&lt;/select&gt;
+
+$('select[name="color"]').multiselect();
+
+or 
+
+var opts = { ... }
+$('select[name="color"]').multiselect(opts);
+		</pre>
+		
+		<div class="ui-state-default ui-corner-all">Options</div>
+		<table cellspacing="0">
+			<tr>
+				<td>layout</td>
+				<td>Default widget layout template</td>
+			</tr>
+			<tr>
+				<td>item</td>
+				<td>List item layout template</td>
+			</tr>
+			<tr>
+				<td>addText</td>
+				<td>Text for "New value" button/link</td>
+			</tr>
+			<tr>
+				<td>cancelText</td>
+				<td>Text for "Cancel" icon in text field</td>
+			</tr>
+			<tr>
+				<td>inputTitle</td>
+				<td>Text for input tooltip</td>
+			</tr>
+			<tr>
+				<td>size</td>
+				<td>How many items show in widget without scroll. (Used if select has not "size" attribute)</td>
+			</tr>
+			<tr>
+				<td>itemHoverClass</td>
+				<td>Hover class for list items</td>
+			</tr>
+			<tr>
+				<td>toggleAddButton</td>
+				<td>Hide "New value" button when text field is visible</td>
+			</tr>
+			<tr>
+				<td>parse</td>
+				<td>Function. Parse new list value and return values array. By default - split value by space(s)</td>
+			</tr>
+		</table>
+	</div>
+
+	<hr style="color:#ccc" noshade="on" />
+	<a href="http://std42.ru" style="color:#333">Studio 42</a>
+</body>
+</html>
