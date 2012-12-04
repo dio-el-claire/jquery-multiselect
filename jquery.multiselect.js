@@ -46,6 +46,7 @@
 					.delegate(':checkbox', 'change', function() {
 						var checkbox = $(this);
 						select.children('option[value="'+checkbox.val()+'"]').attr('selected', !!checkbox.attr('checked'));
+						select.children('option[value="'+checkbox.val()+'"]').change() ;
 					})
 					,
 				list = widget.is('.mselect-list') ? widget : widget.find('.mselect-list'),
