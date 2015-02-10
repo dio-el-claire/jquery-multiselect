@@ -34,6 +34,7 @@ Options
 * `layout` - Widget layout template
 * `item` - List item layout template
 * `addText` - Text for *New value* button/link
+* `addButton` -  Layout template for the add button so you can also disable then by using the option var opts = { addButton : "" }
 * `cancelText` - Text for *Cancel* icon in text field
 * `inputTitle` - Text for input tooltip
 * `size` - How many items show in widget without scroll (used if select has no *size* attribute)

@@ -1,31 +1,31 @@
 (function($) {
 	/*
-	 * jQuery.multiselect plugin 
-	 * 
+	 * jQuery.multiselect plugin
+	 *
 	 * Form control: allow select several values from list and add new value(s) to list
 	 *
 	 * Licensed under the BSD License:
 	 *   http://www.opensource.org/licenses/bsd-license
 	 *
 	 * Version: 0.9.0
-	 * 
+	 *
 	 * @author Dmitry (dio) Levashov, dio@std42.ru
 	 * @example
 	 *  html: <select name="my-select" multiple="on"><option .... </select>
 	 * js   : $('select[name="my-select"]').multiselect()
-	 *  or  
-	 * var opts = { ... }; 
+	 *  or
+	 * var opts = { ... };
 	 * $('select[name="my-select"]').multiselect(opts);
 	 */
 	$.fn.multiselect = function(opts) {
 		var o = $.extend({}, $.fn.multiselect.defaults, opts||{});
-		
+
 		return this.filter('select[multiple]:not(.mselect-hidden)').each(function() {
-			var select = $(this).addClass('mselect-hidden').hide(), 
+			var select = $(this).addClass('mselect-hidden').hide(),
 				size   = select.attr('size') > 0 ? select.attr('size') : o.size,
 				items  = (function() {
 					var str = '';
-					
+
 					select.children('option').each(function(i, option) {
 						option = $(option);
 						
@@ -38,6 +38,7 @@
 				})(),
 				html = o.layout
 						.replace(/%items%/gi, items)
+						.replace(/%addButton%/gi, o.addButton)
 						.replace(/%addText%/gi, o.addText)
 						.replace(/%cancelText%/gi, o.cancelText)
 						.replace(/%inputTitle%/gi, o.inputTitle),
@@ -46,6 +47,7 @@
 					.delegate(':checkbox', 'change', function() {
 						var checkbox = $(this);
 						select.children('option[value="'+checkbox.val()+'"]').attr('selected', !!checkbox.attr('checked'));
+						select.children('option[value="'+checkbox.val()+'"]').change() ;
 					})
 					,
 				list = widget.is('.mselect-list') ? widget : widget.find('.mselect-list'),
@@ -72,7 +74,7 @@
 					})
 					.bind($.browser.opera ? 'keypress' : 'keydown', function(e) {
 						var c = e.keyCode;
-						
+
 						if (c == 13 || c == 27) {
 							e.preventDefault();
 							c == 13 ? input.change() : reset();
@@ -88,15 +90,16 @@
 				append = function(v) {
 					$.each(typeof(o.parse) == 'function' ? o.parse(v) : [$.trim(v)], function(i, v) {
 						var item;
-						
+
 						if (v && !select.children('[value="'+v+'"]').length) {
 							item = $(o.item.replace(/%value%|%label%/gi, v)).find(':checkbox').attr('checked', true).end();
 
 							list.children('.mselect-list-item').length
 								? list.children('.mselect-list-item:last').after(item)
 								: list.prepend(item);
-
+								
 							select.append('<option value="'+v+'" selected="selected">'+v+'</option>');
+
 						}
 					});
 					reset();
@@ -104,11 +107,11 @@
 				},
 				reset = function() {
 					var ch = select.children();
-					
+
 					input.val('');
 					container.hide();
 					buttonAdd.show();
-					
+
 					list[list.children().length ? 'show' : 'hide']();
 					if (ch.length >= size && !list.hasClass('mselect-fixed')) {
 						list.height(list.children('.mselect-list-item:first').outerHeight(true) * size).addClass('mselect-fixed');
@@ -117,7 +120,7 @@
 						}
 					}
 				};
-				
+
 				if (o.itemHoverClass) {
 					list.delegate('.mselect-list-item', 'hover', function() {
 						$(this).toggleClass(o.itemHoverClass);
@@ -127,7 +130,7 @@
 
 		}).end();
 	}
-	
+
 	/**
 	 * jQuery.multiselect default options
 	 *
@@ -139,9 +142,9 @@
 		 *
 		 * @type  String
 		 */
-		layout : '<div class="ui-widget ui-widget-content ui-corner-all mselect mselect-list">'
+		layout : '<div class="input-xlarge ui-widget ui-widget-content ui-corner-all mselect mselect-list">'
 					+'%items%'
-					+'<a href="#" class="mselect-button-add"><span class="ui-state-default mselect-button-add-icon"><span class="ui-icon ui-icon-plusthick"/></span>%addText%</a>'
+					+'%addButton%'
 					+'<div class="mselect-input-container">'
 						+'<input type="text" class="ui-widget-content ui-corner-all mselect-input" title="%inputTitle%"/>'
 						+'<a href="#" class="ui-state-default mselect-button-cancel" title="%cancelText%"><span class="ui-icon ui-icon-closethick"/></a>'
@@ -159,6 +162,13 @@
 		 * @type  String
 		 */
 		addText : 'New value',
+		/**
+		 * the add buttom
+		 *
+		 * @type  String
+		 */
+		addButton : '<a href="#" class="mselect-button-add"><span class="ui-state-default mselect-button-add-icon"><span class="ui-icon ui-icon-plusthick"/></span>%addText%</a>' ,
+		
 		/**
 		 * Text for "Cancel" icon in text field
 		 *
@@ -198,5 +208,5 @@
 		 */
 		parse : function(v) { return v.split(/\s+/) }
 	}
-	
+
 })(jQuery);
